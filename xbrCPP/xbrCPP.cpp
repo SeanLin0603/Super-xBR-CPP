@@ -18,7 +18,7 @@ int main()
 	QueryPerformanceFrequency(&nFreq);
 	QueryPerformanceCounter(&nBeginTime);
 
-	Mat result = SuperxbrScaling(src, 8);
+	Mat result = SuperxbrScaling(src, 2);
 	
 	QueryPerformanceCounter(&nEndTime);
 

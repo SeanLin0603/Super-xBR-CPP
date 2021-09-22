@@ -47,13 +47,6 @@ double diagonal_edge(double y[4][4], double *wp)
 
 Mat SuperxbrScaling(Mat image, int factor)
 {
-	double time;
-	LARGE_INTEGER nFreq;
-	LARGE_INTEGER nBeginTime;
-	LARGE_INTEGER nEndTime;
-	QueryPerformanceFrequency(&nFreq);
-
-	QueryPerformanceCounter(&nBeginTime);
 #pragma region Preprocessing
 	int smallW = image.cols;
 	int smallH = image.rows;
@@ -104,12 +97,7 @@ Mat SuperxbrScaling(Mat image, int factor)
 		bWeight[i] = 0.0722 * i;
 	}
 #pragma endregion
-	QueryPerformanceCounter(&nEndTime);
-	time = (double)(nEndTime.QuadPart - nBeginTime.QuadPart) / (double)nFreq.QuadPart;
-	cout << "Preprocessing¡G" << time * 1000 << " ms." << endl;
 
-
-	QueryPerformanceCounter(&nBeginTime);
 #pragma region First Pass
 	double wp[] = { 2.0, 1.0, -1.0, 4.0, -1.0, 1.0 };
 
@@ -223,12 +211,7 @@ Mat SuperxbrScaling(Mat image, int factor)
 		++y;
 	}
 #pragma endregion
-	QueryPerformanceCounter(&nEndTime);
-	time = (double)(nEndTime.QuadPart - nBeginTime.QuadPart) / (double)nFreq.QuadPart;
-	cout << "First pass¡G" << time * 1000 << " ms." << endl;
 
-
-	QueryPerformanceCounter(&nBeginTime);
 #pragma region Second Pass
 	wp[0] = 2.0;
 	wp[1] = 0.0;
@@ -400,11 +383,7 @@ Mat SuperxbrScaling(Mat image, int factor)
 		++y;
 	}
 #pragma endregion
-	QueryPerformanceCounter(&nEndTime);
-	time = (double)(nEndTime.QuadPart - nBeginTime.QuadPart) / (double)nFreq.QuadPart;
-	cout << "Second pass¡G" << time * 1000 << " ms." << endl;
 
-	QueryPerformanceCounter(&nBeginTime);
 #pragma region Third Pass
 	wp[0] = 2.0;
 	wp[1] = 1.0;
@@ -501,9 +480,6 @@ Mat SuperxbrScaling(Mat image, int factor)
 		}
 	}
 #pragma endregion
-	QueryPerformanceCounter(&nEndTime);
-	time = (double)(nEndTime.QuadPart - nBeginTime.QuadPart) / (double)nFreq.QuadPart;
-	cout << "Third pass¡G" << time * 1000 << " ms." << endl;
 
 	return result;
 }
