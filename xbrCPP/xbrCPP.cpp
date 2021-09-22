@@ -25,10 +25,10 @@ int main()
 	double time = (double)(nEndTime.QuadPart - nBeginTime.QuadPart) / (double)nFreq.QuadPart;
 	cout << "Time：" << time * 1000 << " ms." << endl;
 
-	namedWindow("src");
-	imshow("src", src);
-	namedWindow("result");
-	imshow("result", result);
-	waitKey(0);
+	//namedWindow("src");
+	//imshow("src", src);
+	//namedWindow("result");
+	//imshow("result", result);
+	//waitKey(0);
 	return 0;
 }
